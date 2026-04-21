@@ -1,1 +1,10 @@
+<div *ngIf="message" class="alert position-fixed top-0 start-50 translate-middle-x mt-3 shadow"
+     [ngClass]="{
+       'alert-success': type === 'success',
+       'alert-danger': type === 'error'
+     }"
+     style="z-index: 1050; min-width: 300px; text-align: center;">
+  {{ message }}
+</div>
+
 <router-outlet></router-outlet>
