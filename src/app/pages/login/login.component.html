@@ -1,6 +1,6 @@
 <div class="container vh-100 d-flex justify-content-center align-items-center">
   <div class="card shadow-sm" style="width: 450px">
-    <!-- FULL WIDTH HEADER -->
+    
     <div class="bg-light text-center py-3 w-100">
       <h5 class="mb-0">Sign in to your dashboard</h5>
     </div>
@@ -8,24 +8,25 @@
     <div class="p-5">
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <div class="mb-3">
-          <input
-            type="email"
-            class="form-control"
-            formControlName="username"
-            placeholder="Username"
-          />
+          <input type="email" class="form-control" formControlName="username" placeholder="Username"
+            [disabled]="isLoading" />
         </div>
 
         <div class="mb-3">
-          <input
-            type="password"
-            class="form-control"
-            formControlName="password"
-            placeholder="Password"
-          />
+          <input type="password" class="form-control" formControlName="password" placeholder="Password"
+            [disabled]="isLoading" />
         </div>
 
-        <button type="submit" class="btn btn-primary">SIGN IN</button>
+        <button type="submit" class="btn btn-primary w-100 d-flex justify-content-center align-items-center"
+          [disabled]="isLoading">
+          <span *ngIf="!isLoading">SIGN IN</span>
+
+          <span *ngIf="isLoading" class="d-flex align-items-center">
+            <span class="spinner-border spinner-border-sm me-2"></span>
+            Loading...
+          </span>
+        </button>
+
       </form>
     </div>
   </div>

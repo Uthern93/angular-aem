@@ -1,1 +1,86 @@
-<p>dashboard works!</p>
+<app-navbar [pageTitle]="'Dashboard'"></app-navbar>
+
+<div class="w-100 text-center my-3" *ngIf="isLoading">
+    <span class="d-inline-flex align-items-center">
+        <span class="spinner-border spinner-border-sm me-2"></span>
+        Loading...
+    </span>
+</div>
+
+<div class="container py-4" *ngIf="!isLoading && dashboardData">
+    <h2 class="mb-3">Overview</h2>
+
+    <div class="row g-3">
+
+        <div class="col-12 col-lg-6">
+            <div id="donut" class="card shadow-sm h-100">
+                <div class="bg-light text-center py-3">
+                    <h5 class="mb-0">Chart Donut</h5>
+                </div>
+
+                <div class="card-body">
+                    <div id="donutChart" style="width: 100%; height: 350px;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-6">
+            <div id="bar" class="card shadow-sm h-100">
+                <div class="bg-light text-center py-3">
+                    <h5 class="mb-0">Bar Chart</h5>
+                </div>
+
+                <div class="card-body">
+                    <div id="barChart" style="width: 100%; height: 350px;"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card shadow-sm">
+
+                <div class="bg-light text-center py-3">
+                    <h5 class="mb-0">Table Data</h5>
+                </div>
+
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+
+                            <thead class="table-secondary">
+                                <tr>
+                                    <th>#</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>User Name</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr *ngFor="let user of dashboardData.tableUsers; let i = index">
+                                    <td>{{ i + 1 }}</td>
+                                    <td>{{ user.firstName }}</td>
+                                    <td>{{ user.lastName }}</td>
+                                    <td>{{ user.username }}</td>
+                                </tr>
+
+                                <tr *ngIf="dashboardData.tableUsers.length === 0">
+                                    <td colspan="3" class="text-center text-muted">
+                                        No data available
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
