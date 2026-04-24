@@ -22,8 +22,6 @@ export class LoginComponent implements OnInit {
   isLoading = false;
 
   ngOnInit(): void {
-    const token = localStorage.getItem("auth_token");
-    this.router.navigate(['/dashboard']);
   }
 
   loginForm = this.fb.group({
